@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+//javascript는 자바처럼 함수의 값이 어떻게 리턴될지, 리턴값이 없을지 머리만(ex. forEach) 보고 확인할 수 없다... 끝까지 가봐야 알 수 있어.
+//forEach가 왜 리턴값이 없어요? 그렇게 설계돼있는 함수다.
+    let a = function(){
+        console.log("hello");
+    }
+    let result = a();
+    console.log(result);//undefined임. 리턴값이 있는지 없는지 몰랐는데 없던 함수였어. 그런데 호출을 해서 undefined 출력.
+
+    let nums = [10,20,30,40,50,60,70,80,90,100];
+
+    //배열의 요소, index 자바스크립트가 제공하는 람다들이 이 구조
+    nums.map( (x,i) => {
+        console.log(i,x);
+        return x;
+    });
+
+    //2차원의 경우
+    nums = [[10,20,30], [40,50,60], [70,80,90]];
+    nums.map( (x,i) => {
+        x.map( (y,j) => {
+            console.log(i, j, y);
+            return y;//return을 해줘야 map에서 에러가 안남. map은 return을 해줘야 return값으로 배열을 다시 꾸린다.
+        })
+        return x;
+    });
+
+    let result1 = nums.map( (x,i) => {
+        x.map( (y,j) => {
+            console.log(i, j, y);
+            //return y;
+        })
+        //return x;
+    });
+    console.log(result1);
+</script>

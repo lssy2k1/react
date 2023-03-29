@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    가로 : <input type = "text" name = "x" id = "xvalue"><br/>
+    세로 : <input type = "text" name = "y" id = "yvalue"><br/>
+    <button onclick = "surplus()">면적구하기</button>
+    면적 : <span id = "result"></span>
+</body>
+</html>
+<script>
+    //사각형의 가로세로를 입력받아 면적을 구하여 출력하세요.
+    function surplus(){
+        x = document.getElementById("xvalue").value;
+        y = document.getElementById("yvalue").value;
+
+        result = parseInt(x) * parseInt(y);
+        document.getElementById("result").innerHTML = result;
+    }
+</script>
