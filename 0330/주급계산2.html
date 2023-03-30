@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    이름 : <input type = "text" id="nm"><br/>
+    근무시간 : <input type = "text"  id="workTime"><br/>
+    시간당 급여액 : <input type = "text" id="sal"><br/>
+    
+    <button type = "button" id = "btnConfirm">계산</button>&nbsp&nbsp
+    <button type = "button" id = "btnClear">새로입력</button><br/>
+
+    합 : <div id = "result"></div><br/>
+</body>
+</html>
+<script>
+    $(document).ready(() =>{
+        $("#btnConfirm").click(() => {
+            time = parseInt($("#workTime").val());
+            sal = parseInt($("#sal").val());
+            name = $("#nm").val();
+
+            base = time * sal;
+            surplus = 0;
+            if(time > 20){
+                surplus = (time - 20) * sal / 2;
+            }
+            result = `${name}의 기본급은 ${base}이고 수당은 ${surplus}이고,
+                        총액은 ${base + surplus}입니다.`
+
+            $("#result").html(result);
+        })
+        $("#btnClear").click( () => {
+            // $("#nm").val("");
+            // $("#workTime").val("");
+            // $("#sal").val("");                        
+            // $("#result").html("");
+            //$("input").val("");//input태그를 잡아옴으로 한번에 초기화
+            input = document.getElementsByTagName("input");
+            for (i = 0; i < input.length; i++){
+            input[i].value = "";
+            }
+        })
+    })
+</script>

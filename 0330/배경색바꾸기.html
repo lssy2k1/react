@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button style = "background-color : aqua" id = "btn1"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(19, 85, 71)" id = "btn2"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(140, 233, 26)" id = "btn3"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(66, 19, 60)" id = "btn4"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(255, 0, 0)" id = "btn5"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(5, 255, 59)" id = "btn6"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(0, 0, 0)" id = "btn7"
+    onclick = "changeBackground(this)">배경색</button><br/>
+
+</body>
+</html>
+
+<script>
+    function changeBackground(me){
+        console.log(event.target.id);
+        console.log(event.target);
+        console.log(me);
+        //console.log(this); //이건 이상한 값 반환함.
+        //event : 자바스크립트가 제공하는 내장객체, 발생한 이벤트에 대한
+        //모든 정보를 갖고 있음.
+        body = document.getElementsByTagName("body")
+        body[0].style.backgroundColor = me.style.backgroundColor;
+        //변수가 하이픈을 잡아내지 못하기 때문에 카멜표기법.
+        //this는 버튼 객체를 의미하고 me는 this(버튼객체)를 받아옴
+        //-> me의 색상(받아온 버튼객체의 색상)을  body색상으로 대입해줌
+    }
+</script>

@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "홍길동",
+      "hour": 40,
+      "payPerHour": 10000
+    },
+    {
+      "id": 2,
+      "name": "임꺽정",
+      "hour": 15,
+      "payPerHour": 20000
+    },
+    {
+      "id": 3,
+      "name": "장길산",
+      "hour": 20,
+      "payPerHour": 20000
+    },
+    {
+      "id": 4,
+      "name": "강감찬",
+      "hour": 30,
+      "payPerHour": 15000
+    },
+    {
+      "id": 5,
+      "name": "이순신",
+      "hour": 40,
+      "payPerHour": 30000
+    }
+  ]
+}

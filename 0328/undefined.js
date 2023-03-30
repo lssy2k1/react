@@ -1,0 +1,1 @@
+console.log(document.getElementById("result").innerHTML);//cannot read properties of null. 이라는 오류 발생.

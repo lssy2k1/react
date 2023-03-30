@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>화살표함수(람다)</h1>
+</body>
+</html>
+
+<script>
+    let person = [
+        {name : "홍길동", age : 11, phone : "010-1111-1111"},
+        {name : "임꺽정", age : 24, phone : "010-0000-1111"},
+        {name : "장길산", age : 34, phone : "010-1111-1119"},
+        {name : "이순신", age : 46, phone : "010-1111-1118"},
+        {name : "강감찬", age : 45, phone : "010-1111-1117"},
+        {name : "윤성일", age : 75, phone : "010-1111-1116"},
+        {name : "서희", age : 66, phone : "010-1111-1115"},
+        {name : "윤관", age : 32, phone : "010-1111-1114"},
+        {name : "김종서", age : 29, phone : "010-1111-1113"},
+        {name : "척준경", age : 94, phone : "010-1111-1112"}
+    ];
+
+    //배열에 데이터 추가하기
+    person.push({name : "김성훈", age : 43, phone : "010-9999-9999"});
+
+    person.forEach( (p) => {
+        console.log(`${p.name} ${p.age} ${p.phone}`);
+    });
+
+    //문제1. 성이 윤인사람 찾아내기
+    //person.filter( (p) => p.name.substring(0,1) == "윤")
+    //p에는 JSON객체가 전달된다.
+    result = person.filter(p => 
+        p.name.startsWith("윤"));
+    console.log(result);
+
+    let ageless19 = person.filter( p => p.age <= 19); //미성년
+    let age19 = person.filter( p => p.age > 19); //성년
+
+    console.log(ageless19);
+    console.log(age19);
+
+    //정렬 : 데이터를 순서대로 늘여놓는다.(오름차순, 내림차순)
+    let sorted = person.sort((p1, p2) => p1.age - p2.age);
+    //음수, 0, 양수 두 객체를 비교했을 때 앞의 것이 작으면 음수
+    //둘이 같으면 0
+    //앞의 것이 크면 양수를 반환한다.
+    console.log(sorted);
+
+    let sorted2 = person.sort((p1, p2) => {
+        if(p1.name > p2.name)
+            return 1;//-1로 설정할 경우 내림차순
+        else if (p1.name < p2.name)
+            return -1;
+        else
+            return 0;    
+    });
+    console.log(sorted2);
+
+    let sorted3 = person.sort((p1, p2) => p1.name < p2.name);//문자열을 비교할 때, 첫번째 글자부터 비교를 함. str 102와 2를 비교하면 첫글자가 2가 커서 2가 크다고 나옴.
+    console.log(sorted3);
+
+</script>

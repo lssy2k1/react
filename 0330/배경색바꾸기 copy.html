@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    <button style = "background-color : aqua" id = "btn1"
+    ">배경색</button><br/>
+    <button style = "background-color : rgb(19, 85, 71)" id = "btn2"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(140, 233, 26)" id = "btn3"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(66, 19, 60)" id = "btn4"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(255, 0, 0)" id = "btn5"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(5, 255, 59)" id = "btn6"
+    onclick = "changeBackground(this)">배경색</button><br/>
+    <button style = "background-color : rgb(0, 0, 0)" id = "btn7"
+    onclick = "changeBackground(this)">배경색</button><br/>
+
+</body>
+</html>
+
+<script>
+    $(document).ready(() => {
+        $("button").click(function(){
+            $("body").css("background-color", $(this).css("background-color"));
+        })
+    })
+
+    // $("button").click( (btn) => {
+    //     console.log(btn);
+    //     $("body").css("background-color",
+    //             btn.target.style.backgroundColor);//js와 jquery 합쳐서 응용
+    //     $("body").css("background-color",
+    //             $("#" + btn.target.id).css("background-color"));
+    // })
+
+</script>

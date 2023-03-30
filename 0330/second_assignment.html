@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    이름 : <input type = "text" id = "name"/><br/>
+    국어 : <input type = "text" id = "kor"/><br/>
+    영어 : <input type = "text" id = "eng"/><br/>
+    수학 : <input type = "text" id = "mat"/><br/>
+    <button type = "button" id = "calc">계산</button><br/>
+    총점 : <div id = "total"></div>
+    평균 : <div id = "avg"></div>
+</body>
+</html>
+<script>
+    $(document).ready( () => {
+        $("#calc").click( () =>{
+        name = $('#name').val();
+        kor = parseInt($("#kor").val());
+        eng = parseInt($("#eng").val());
+        mat = parseInt($("#mat").val());
+        if (kor > 100 || kor < 0 || eng > 100 || eng < 0 || mat > 100 || mat < 0){
+        alert("0-100사이 숫자만 입력하세요")
+        return false;
+        }
+        total = kor + eng + mat;
+        avg = total / 3
+        $("#total").html(total);
+        $("#avg").html(avg);
+        })
+    })
+
+    // window.onload = () => {
+    //     document.getElementById("calc").addEventListener("click", ( () =>{
+    //     name = document.getElementById("name").value;
+    //     kor = parseInt(document.getElementById("kor").value);
+    //     if (kor > 100 || kor < 0){
+    //         alert("0-100사이 숫자만 입력하세요")
+    //         return false;
+    //     }
+    //     eng = parseInt(document.getElementById("eng").value);
+    //     if (eng > 100 || eng < 0){
+    //         alert("0-100사이 숫자만 입력하세요")
+    //         return false;
+    //     }
+    //     mat = parseInt(document.getElementById("mat").value);
+    //     if (mat > 100 || mat < 0){
+    //         alert("0-100사이 숫자만 입력하세요")
+    //         return false;
+    //     }
+    //     total = kor + eng + mat;
+    //     avg = total / 3;
+    //     document.getElementById("total").innerHTML = total;
+    //     document.getElementById("avg").innerHTML = avg;
+    //     }
+    //     )
+    // )}
+
+</script>
