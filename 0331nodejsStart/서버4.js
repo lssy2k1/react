@@ -23,6 +23,8 @@ let server = http.createServer( (request, response) => {
     console.log(pathname);
     console.log(typeof(query));
 
+
+    //request, response 사용법을 익히는 것이 중요하다.
     if ( pathname == "/add"){
         response.writeHead(200, {'Content-Type' : 'text/html;charset=utf-8'});
         response.end(`${query.x} + ${query.y} = ${parseInt(query.x) + parseInt(query.y)} `);
