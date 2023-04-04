@@ -1,0 +1,21 @@
+
+board.js(라우팅     /board/list -> board.js 응답을 하고 데이터와 
+                    board_list.ejs를 묶어준다.
+                    boardList데이터를
+                    ejs엔진의 render함수가 데이터와 ejs파일을 묶는다.)
+                    express에서 view engine이라는 환경변수에 ejs를 연결하면
+                    response.render라는 함수에서 ejs파일과 데이터를 묶어서 새로운 html파일을 만든다.
+board_list.ejs : 목록 보기
+board_view.ejs : 상세보기 화면
+board_write.ejs : 글쓰기    /board/write로 이동하고 등록 /save가 되고 나면
+                            redirect로 이동. request를 정리하고 이동함.
+                            함수를 직접호출하면 안돼. 중간단계 청소해야할 작업이 청소가 안됨.
+                            JSP도 같은 구조다. 구조는 전부 이 구조와 비슷. 문법만 조금 다름.
+                            웹사이트 흘러가는 흐름은 똑같다.
+                            mvc방법
+
+nodejs는 분리시킨다.
+
+html을 데이터를 가져올 능력이 없어.
+실제 데이터는 자바스크립트에 있다.
+html과 자바스크립트를 결합해서 새로운 문서를 만들어 줘야한다.(ejs함수의 역할)

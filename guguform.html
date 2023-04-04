@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name = "myform" action="/gugu" method = "get">
+        단 : <input type = "text" name = "dan" id = "dan">
+        <button type = "submit" id = btngugu>gugu</button>
+    </form>
+</body>
+</html>
+<script>
+    window.onload = () => {
+        let btngugu = document.getElementById("btngugu");
+        btngugu.addEventListener("click" , () => {
+            //document.myform.submit();
+            document.forms[0].submit();
+        })
+    }
+</script>
