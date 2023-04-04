@@ -4,7 +4,7 @@ var path = require("path");//파일이나 디렉토리 목록 담당 라이브�
 
 console.log( __dirname); //C:\노드\1일차\views
 
-app.set('views', path.join(__dirname, 'views'));//views의 패스 정하기
+//app.set('views', path.join(__dirname, 'views'));//views의 패스 정하기
 app.set('view engine', 'ejs');//views의 엔진을 ejs로 지정
 
 var ejs = require("ejs");//ejs객체 생성
@@ -22,7 +22,7 @@ var guestbookList = [
 
 //use함수는 get, post방식에 모두 응한다. 현재 모든 url을 혼자 처리함.
 app.get("/list", (req,res) => {
-    res.render('guestbook/list', {"title":"게시판목록", "guestbookList":guestbookList});
+    res.render("guestbook/list.ejs", {"title":"게시판목록", "guestbookList":guestbookList});
     //ejs엔진과 결합, render함수.
 })
 
@@ -35,7 +35,11 @@ app.get("/view/:id", (req, res)=> {
     //ejs와 결합 render함수
 })
 
-app.get("/wirte", (req, res) => {
+app.get("/write", (req,res) => {
+    res.render('guestbook/write')
+})
+
+app.post("/write", (req, res) => {
     console.log(req.body);
     var title = req.body.title;
     var writer = req.body.writer;
