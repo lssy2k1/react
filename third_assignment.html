@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <form action = "/score" name = "myform"> -->
+    <form name = "myform">
+        이름 : <input type = "text" name = "name" id = "name"><br/>
+        국어 : <input type = "text" name = "kor" id = "kor"><br/>
+        영어 : <input type = "text" name = "eng" id = "eng"><br/>
+        수학 : <input type = "text" name = "mat" id = "mat"><br/>
+        <button type = "button" id = "btnCalc">계산</button><br/>
+        총점 : <input type = "text" name = "total" id = "total" readonly>&nbsp;
+        평균 : <input type = "text" name = "avg" id = "avg" readonly>
+    </form>
+</body>
+</html>
+<script>
+    let btnCalc = document.getElementById("btnCalc");
+    btnCalc.addEventListener("click", () => {
+        //document.myform.submit();
+    let name = document.getElementById("name").value;
+    let kor = document.getElementById("kor").value;
+    let eng = document.getElementById("eng").value;
+    let mat = document.getElementById("mat").value;
+    let url = "/score?name=" + name + "&kor=" + kor + "&eng=" + eng + "&mat=" + mat;
+    $.get(url, function(data) {
+        console.log(data)
+        $('#total').val(data.total);
+        $('#avg').val(data.avg);
+    });    
+    })
+
+// 연산 순서
+// 1. 클라이언트에서 정보를 입력하고 버튼을 누르면 /scoreform에 요청을 보냄
+// 2. 서버측의 "/scoreform"이 호출되어 렌더링 후 응답
+// 3. 동시에 btnCalc 함수가 동작하고 url이 만들어짐 ("/score?"로 시작)
+// 4. 이에 서버측의 "/score"이 호출되어 total, avg를 연산
+// 5. res.send({})로 total, avg를 JSON으로 반환하였고 $.get은 total, avg값을 반환해줌
+// 5-1. json으로 들어온 {total:total, avg:avg}는 key:value임. 따라서 data JSON의 키를 호출하기 위해
+// 5-2. data.total, data.avg로 호출하고 대입하는 것임.
+// 6. json대신 ``으로 출력할 경우 값이 총점, 평균 input란에 들어가지 않음.
+</script>
