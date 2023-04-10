@@ -38,3 +38,5 @@ async function mysqlRead(sql, params){
 
 exports.mysqlRead = mysqlRead;
 exports.DBInfo = DBInfo;
+
+//export해줘야 다른곳에서 쓸수 있어.

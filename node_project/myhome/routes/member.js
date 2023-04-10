@@ -4,7 +4,7 @@ var commonDB = require("./commonDB");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('member/member_register', { title: 'Express' });
+  res.render('member/member_register', { title: 'Express' });//ejs파일 <%=title%>로 정의된 곳에 'Express'를 할당하겠다.
 });
 
 //아이디 중복체크 -- 클라이언트로부터 id를 받는다.
@@ -15,6 +15,8 @@ router.use('/idcheck', async function(req, res, next) {
   let sql = `select count(*) cnt from tb_member where userid = '${userid}'`;
   let rows = await commonDB.mysqlRead(sql);
   let cnt = rows[0]["cnt"];
+  //console.log(rows);
+  //console.log(cnt);
   if(cnt == 0){
     res.json({"result" : "success"});
   } else {
@@ -46,29 +48,69 @@ catch (e) {
 });
 
 // /member/login
-router.use('/login', async function(req, res, next){
+router.get('/login', async function(req, res, next){
   res.render("member/member_logon")
 });
 
-// /member/logon
-router.use('/logon', async function(req, res, next){
+router.post('/login', async function(req,res,next){//같은 /login이지만 get, post로 구분.
   let userid = req.body.userid;
   let password = req.body.password;
-  let sql = `select userid, password from tb_member where userid = ${userid}`
-  try {
-    console.log("******************")
-    sqlread = await commonDB.mysqlRead(sql)
-    console.log("가져옴");
-    if (password == sqlread[0][1]){
-      res.json({"result" : "success"});
-    }
-      res.json({"result": "fail"});
-    }
-  catch(e){
-    console.log(e);
-    res.json({"result" : "fail"});
-  };
-});
+  let sql = `select * from tb_member where userid = '${userid}'`
+  let results = await commonDB.mysqlRead(sql);
+  if (results.length == 0){
+    res.json({"result" : "fail", msg : "아이디가 없습니다."})
+    return;
+  }
+  if (results[0]["PASSWORD"] != password){
+    res.json({"result" : "fail", msg : "패스워드가 일치하지 않아요"});
+    return;
+  }
+
+  req.session["username"] = results[0]["username"];
+  req.session["userid"] = results[0]["userid"];
+  req.session["email"] = results[0]["email"];
+  console.log(req.session["username"])
+  console.log(req.session["userid"])
+  console.log(req.session["email"])
+  res.json({"result" : "success", msg : "로그인 성공"});
+})
+
+
+
+// // /member/logon 내가 만들어 본 것.
+// router.use('/logon', async function(req, res, next){
+//   let userid = req.body.userid;
+//   let password = req.body.password;
+
+//   let sql = `select userid, PASSWORD from tb_member where userid = '${userid}'`
+//   let sqlread = await commonDB.mysqlRead(sql)
+//   //let useridsql = sqlread[0];
+// //실수했던 부분 : sql구문에서 변수에 ''안붙임. sql구문에서 "컬럼명"으로 검색해야 오류 안남.
+//   console.log(sqlread[0]["PASSWORD"]);
+//   console.log(password);
+//   try {
+//     if (password == sqlread[0]["PASSWORD"]){
+//       console.log("일치");
+//       res.json({"result" : "success"});
+//     } else{
+//       console.log("불일치");
+//       res.json({"result": "pwfail"});
+//     }
+//     }
+//   catch(e){
+//     console.log(e);
+//     res.json({"result" : "idfail"});
+//   };
+// });
+
+router.use('/logOut', async function(req, res, next){
+  req.session["userid"]="";
+  req.session["username"]="";
+  req.session["email"]="";//세션 지우는 방법.
+  res.redirect('/');//로그아웃하고나면 index로 이동
+  //req.session.destroy();//세션 파괴. 둘중 하나만 하면 됨.
+})
+
 
 router.get('/put', async function(req, res, next){
   let userid = req.query.userid;

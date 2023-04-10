@@ -12,6 +12,8 @@
 
 </head>
 <body>
+  <form name ="myform" id ="myform">
+    <!-- <input type = "hidden" name = "pg", id = "pg" value = "<%=pg%>"> 없애도 잘가.-->
 
   <%-include('../layout/header.ejs')%>
 
@@ -33,6 +35,12 @@
           </div>
 
         <table class="table table-hover ">
+          <colgroup>
+            <col style = "width : 8%">
+            <col style = "width : 64%">
+            <col style = "width : 14%">
+            <col style = "width : 14%">
+          </colgroup>
             <thead class="table-secondary">
               <tr>
                 <th>이름</th>
@@ -45,40 +53,41 @@
             <tbody>
               <%for (item of boardList) {%>
               <tr>
-                <td><%=item.id%></td>
+                <td><%=totalCnt-item.num+1%></td>
+                <td><%=item.title%></td>
+                <td><%=item.username%></td>
+                <td><%=item.wdate%></td>
+                <!-- <td><%=item.id%></td>
                 <td><a href = "/board/view/<%=item.id%>"><%=item.title%></a></td>
                 <td><%=item.writer%></td>
-                <td><%=item.contents%></td>
-                <td><%=item.wdate%></td>
+                <td><%=item.contents%></td> -->
               </tr>
               <%}%>
             </tbody>
           </table>
 
- 
-          <ul class="pagination  justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#">first</a></li>
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            <li class="page-item"><a class="page-link" href="#">last</a></li>
-          </ul>
+          <%-include('../layout/paging.ejs')%>
        
           <div class="container mt-3" style="text-align:right;">
-            <form action="/board_write" id = "myform">
+            <!-- <form action="/board_write" id = "myform">
             <button type="button" class="btn btn-secondary" id = "btnWrite" onclick = "writeCall()">글쓰기</button>
-            </form>
+            </form> -->
           </div>
           
     </div>
+    </form>
 </body>
 </html>
-<script>
+<!-- <script>
   function writeCall(){
     document.myform.submit();
+  }//form태그 중복으로 일단 빼놓음
+</script> -->
+
+<script>
+  function goPage(pg){
+    //$("#pg").val(pg);
+    $("#myform").prop("action","/board/list/"+pg);
+    $("#myform").submit();
   }
 </script>
